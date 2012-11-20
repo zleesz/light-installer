@@ -175,6 +175,50 @@
 				>
 			</File>
 			<File
+				RelativePath=".\ISOPBase.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPCopy.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPDel.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPInclude.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPMove.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPPath.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPRegister.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPRmdir.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPShellExcute.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPVar.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISSection.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\ScriptParser.cpp"
 				>
 			</File>
@@ -206,6 +250,50 @@
 			>
 			<File
 				RelativePath=".\Installer.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPBase.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPCopy.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPDel.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPInclude.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPMove.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPPath.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPRegister.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPRmdir.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPShellExcute.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPVar.h"
+				>
+			</File>
+			<File
+				RelativePath=".\ISSection.h"
 				>
 			</File>
 			<File
