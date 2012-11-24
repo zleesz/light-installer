@@ -1,8 +1,10 @@
 #pragma once
+#include "GlobalDef.h"
+#include "ISOPClassFactory.h"
 
 class CScriptParser
 {
 public:
-	CScriptParser(void);
 	virtual ~CScriptParser(void);
+	SINGLETON_CLASS(CScriptParser);
 };
