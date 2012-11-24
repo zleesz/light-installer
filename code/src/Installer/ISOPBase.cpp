@@ -8,3 +8,8 @@ CISOPBase::CISOPBase(void)
 CISOPBase::~CISOPBase(void)
 {
 }
+
+CISOPBase::CISOPBase(const std::wstring& wstrLine)
+{
+
+}
