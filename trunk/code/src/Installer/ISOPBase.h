@@ -1,10 +1,6 @@
 #pragma once
 #include <string>
-typedef enum _enumOpErrorCode
-{
-	OP_ERROR_BASE = 10000,
-	OP_ERROR_PARSER_BASE = 20000,
-}OpErrorCode;
+#include "GlobalDef.h"
 
 typedef enum _enumISOPType
 {
