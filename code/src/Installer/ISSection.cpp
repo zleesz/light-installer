@@ -46,6 +46,8 @@ void CISSection::AddOperation(const std::wstring& wstrLine)
 	CISOPBase* pISOPBase = m_pClassFactory->CreateISOP(m_wstrName);
 	if(NULL != pISOPBase)
 	{
-		pISOPBase->SetLine(wstrLine);
+		OpErrorCode errorCode = pISOPBase->SetLine(wstrLine);
+		LOGDEBUG(_T("errorCode=%08X"), errorCode);
+		m_vecOP.push_back(pISOPBase);
 	}
 }
