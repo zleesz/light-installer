@@ -14,7 +14,7 @@ CISScript::~CISScript(void)
 BOOL CISScript::Load(const TCHAR* tszPath)
 {
 	LOGENTER();
-	SPErrorCode errorCode = m_Parser->ParserScript(tszPath);
+	SPErrorCode errorCode = m_Parser->ParserScript(tszPath, static_cast<IScriptParserEvent*>(this));
 	LOGDEBUG(_T("errorCode=%08X"), errorCode);
 	BOOL bRet = (errorCode == SP_ERROR_NO_ERROR);
 	if(bRet)
@@ -26,4 +26,19 @@ BOOL CISScript::Load(const TCHAR* tszPath)
 		assert(false && "½Å±¾½âÎö³ö´í£¡");
 	}
 	return bRet;
+}
+
+void CISScript::OnParserError(OpErrorCode errorCode, const std::wstring& wstrPath)
+{
+
+}
+
+void CISScript::OnParserSucc(const std::wstring& wstrPath)
+{
+
+}
+
+void CISScript::OnParserLine(const std::wstring& wstrLine, const std::wstring& wstrPath)
+{
+
 }
