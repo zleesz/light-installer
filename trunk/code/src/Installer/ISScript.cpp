@@ -28,9 +28,9 @@ BOOL CISScript::Load(const TCHAR* tszPath)
 	return bRet;
 }
 
-void CISScript::OnParserError(OpErrorCode errorCode, const std::wstring& wstrPath)
+void CISScript::OnParserError(SPErrorCode errorCode, const std::wstring& wstrPath)
 {
-
+	LOGENTER();
 }
 
 void CISScript::OnParserSucc(const std::wstring& wstrPath)
@@ -38,7 +38,7 @@ void CISScript::OnParserSucc(const std::wstring& wstrPath)
 
 }
 
-void CISScript::OnParserLine(const std::wstring& wstrLine, const std::wstring& wstrPath)
+void CISScript::OnParserLine(const std::string& strLine, const std::wstring& wstrPath)
 {
-
+	
 }

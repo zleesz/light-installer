@@ -9,7 +9,7 @@ CISOPInclude::~CISOPInclude(void)
 {
 }
 
-const std::wstring &CISOPInclude::toString() const
+const std::wstring CISOPInclude::toString() const
 {
 	std::wstring wstrDesc;
 	return wstrDesc;
@@ -21,7 +21,7 @@ OpErrorCode CISOPInclude::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPInclude::SetLine(const std::wstring &wstrLine)
+OpErrorCode CISOPInclude::SetLine(const std::string &strLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;

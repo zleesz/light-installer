@@ -35,7 +35,7 @@ const std::wstring& CISSection::GetName() const
 	return m_wstrName;
 }
 
-void CISSection::AddOperation(const std::wstring& wstrLine)
+void CISSection::AddOperation(const std::string& strLine)
 {
 	LOGENTER();
 	if(m_wstrName.empty())
@@ -46,7 +46,7 @@ void CISSection::AddOperation(const std::wstring& wstrLine)
 	CISOPBase* pISOPBase = m_pClassFactory->CreateISOP(m_wstrName);
 	if(NULL != pISOPBase)
 	{
-		OpErrorCode errorCode = pISOPBase->SetLine(wstrLine);
+		OpErrorCode errorCode = pISOPBase->SetLine(strLine);
 		LOGDEBUG(_T("errorCode=%08X"), errorCode);
 		m_vecOP.push_back(pISOPBase);
 	}

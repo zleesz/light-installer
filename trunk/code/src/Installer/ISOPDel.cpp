@@ -9,7 +9,7 @@ CISOPDel::~CISOPDel(void)
 {
 }
 
-const std::wstring &CISOPDel::toString() const
+const std::wstring CISOPDel::toString() const
 {
 	std::wstring wstrDesc;
 	return wstrDesc;
@@ -21,7 +21,7 @@ OpErrorCode CISOPDel::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPDel::SetLine(const std::wstring &wstrLine)
+OpErrorCode CISOPDel::SetLine(const std::string &strLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;

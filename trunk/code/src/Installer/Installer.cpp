@@ -3,7 +3,7 @@
 
 #include "stdafx.h"
 #include "Installer.h"
-#include "ISOPClassFactory.h"
+#include "ISScriptManager.h"
 
 #define MAX_LOADSTRING 100
 
@@ -141,7 +141,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		LOGDEBUG(_T("WM_CREATE"));
+		CISScriptManager::GetInstance()->LoadScript(_T("..\\..\\..\\code\\scripts\\Demo.ss"));
 		break;
 	case WM_COMMAND:
 		wmId    = LOWORD(wParam);
