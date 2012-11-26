@@ -9,7 +9,7 @@ CISOPShellExcute::~CISOPShellExcute(void)
 {
 }
 
-const std::wstring &CISOPShellExcute::toString() const
+const std::wstring CISOPShellExcute::toString() const
 {
 	std::wstring wstrDesc;
 	return wstrDesc;
@@ -21,7 +21,7 @@ OpErrorCode CISOPShellExcute::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPShellExcute::SetLine(const std::wstring &wstrLine)
+OpErrorCode CISOPShellExcute::SetLine(const std::string &strLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;

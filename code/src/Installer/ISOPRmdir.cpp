@@ -9,7 +9,7 @@ CISOPRmdir::~CISOPRmdir(void)
 {
 }
 
-const std::wstring &CISOPRmdir::toString() const
+const std::wstring CISOPRmdir::toString() const
 {
 	std::wstring wstrDesc;
 	return wstrDesc;
@@ -21,7 +21,7 @@ OpErrorCode CISOPRmdir::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPRmdir::SetLine(const std::wstring &wstrLine)
+OpErrorCode CISOPRmdir::SetLine(const std::string &strLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;

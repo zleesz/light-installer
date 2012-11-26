@@ -175,10 +175,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\ISOPClassFactory.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\stdafx.cpp"
 				>
 				<FileConfiguration
@@ -206,10 +202,6 @@
 			>
 			<File
 				RelativePath=".\Installer.h"
-				>
-			</File>
-			<File
-				RelativePath=".\ISOPClassFactory.h"
 				>
 			</File>
 			<File
@@ -247,11 +239,15 @@
 			Name="ISOP"
 			>
 			<File
-				RelativePath=".\ISOPBase.cpp"
+				RelativePath=".\ISOPBase.h"
 				>
 			</File>
 			<File
-				RelativePath=".\ISOPBase.h"
+				RelativePath=".\ISOPClassFactory.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\ISOPClassFactory.h"
 				>
 			</File>
 			<File

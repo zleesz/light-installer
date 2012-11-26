@@ -18,7 +18,7 @@ public:
 
 public:
 	// IScriptParserEvent
-	void OnParserError(OpErrorCode errorCode, const std::wstring& wstrPath);
+	void OnParserError(SPErrorCode errorCode, const std::wstring& wstrPath);
 	void OnParserSucc(const std::wstring& wstrPath);
-	void OnParserLine(const std::wstring& wstrLine, const std::wstring& wstrPath);
+	void OnParserLine(const std::string& strLine, const std::wstring& wstrPath);
 };

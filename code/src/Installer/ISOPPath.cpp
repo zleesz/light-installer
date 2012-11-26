@@ -9,7 +9,7 @@ CISOPPath::~CISOPPath(void)
 {
 }
 
-const std::wstring &CISOPPath::toString() const
+const std::wstring CISOPPath::toString() const
 {
 	std::wstring wstrDesc;
 	return wstrDesc;
@@ -21,7 +21,7 @@ OpErrorCode CISOPPath::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPPath::SetLine(const std::wstring &wstrLine)
+OpErrorCode CISOPPath::SetLine(const std::string &strLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;

@@ -9,7 +9,7 @@ CISOPMove::~CISOPMove(void)
 {
 }
 
-const std::wstring &CISOPMove::toString() const
+const std::wstring CISOPMove::toString() const
 {
 	std::wstring wstrDesc;
 	return wstrDesc;
@@ -21,7 +21,7 @@ OpErrorCode CISOPMove::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPMove::SetLine(const std::wstring &wstrLine)
+OpErrorCode CISOPMove::SetLine(const std::string &strLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;
