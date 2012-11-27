@@ -10,14 +10,22 @@ SPErrorCode CScriptParser::ParserScript(const std::wstring& wstrPath, IScriptPar
 {
 	LOGENTER();
 	SPErrorCode errorCode = SP_ERROR_NO_ERROR;
+	if(!PathFileExists(wstrPath.c_str()))
+	{
+		errorCode = SP_ERROR_FILE_NOT_FOUND;
+		if(pIEvent)
+			pIEvent->OnParserError(errorCode, wstrPath);
+		return errorCode;
+	}
 	// 读文件，解析脚本
 	std::ifstream f;
 	f.open(wstrPath.c_str(), std::ios::_Nocreate);
 	if(f.fail())
 	{
+		errorCode = SP_ERROR_FILE_OPEN_FAILED;
 		if(pIEvent)
-			pIEvent->OnParserError(SP_ERROR_FILE_OPEN_FAILED, wstrPath);
-		return SP_ERROR_FILE_OPEN_FAILED;
+			pIEvent->OnParserError(errorCode, wstrPath);
+		return errorCode;
 	}
 	std::string s;
 	while(getline(f, s))
