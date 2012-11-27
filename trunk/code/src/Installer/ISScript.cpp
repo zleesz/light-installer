@@ -38,7 +38,12 @@ void CISScript::OnParserSucc(const std::wstring& wstrPath)
 
 }
 
-void CISScript::OnParserLine(const std::string& strLine, const std::wstring& wstrPath)
+void CISScript::OnParserSection(const std::string& strSection, const std::wstring& wstrPath)
 {
-	
+
+}
+
+void CISScript::OnParserOpLine(const std::string& strOpLine, const std::wstring& wstrPath)
+{
+
 }
