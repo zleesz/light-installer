@@ -22,8 +22,30 @@ SPErrorCode CScriptParser::ParserScript(const std::wstring& wstrPath, IScriptPar
 	std::string s;
 	while(getline(f, s))
 	{
-		if(pIEvent)
-			pIEvent->OnParserLine(s, wstrPath);
+		if(s[0] == '[')
+		{
+			// 应该放到这里处理解析出错的情况。
+			// script里面处理每一行操作解析出错情况。
+			std::string::size_type stLeft = s.find_first_of(']');
+			if(stLeft == std::string::npos)
+			{
+				// 脚本错误，没找到 ']'
+				// pIEvent
+				break;
+			}
+			else
+			{
+				// 找到了，再找一下 注释 "//" 标记有没有。
+				// 如果没有，就解析成功
+				// 如果有的话，并且在]前，出错。
+				// 如果在]后，判断下之间除了空格还有没有其他字符。
+				// 有其他字符，脚本出错，没有就回调 OnParserSection
+			}
+		}
+		else if(pIEvent)
+		{
+			pIEvent->OnParserOpLine(s, wstrPath);
+		}
 	}
 	pIEvent->OnParserSucc(wstrPath);
 	return errorCode;

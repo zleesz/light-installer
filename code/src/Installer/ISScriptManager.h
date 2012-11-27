@@ -15,10 +15,10 @@ public:
 	CISScriptManager(void);
 	~CISScriptManager(void);
 	SINGLETON_CLASS(CISScriptManager);
-public:
-	BOOL LoadScript(const TCHAR* pszPath);
 private:
 	BOOL _LoadScript(const TCHAR* pszPath);
+public:
+	BOOL LoadScript(const TCHAR* pszPath);
 private:
 	std::vector<std::wstring> m_vecPath;
 	std::map<std::wstring, CISScript*> m_mapScript;
