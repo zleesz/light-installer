@@ -18,5 +18,5 @@ private:
 public:
 	void SetName(const std::wstring& wstrName);
 	const std::wstring& GetName() const;
-	void AddOperation(const std::string& strLine);
+	void AddOperation(const std::wstring& wstrLine);
 };
