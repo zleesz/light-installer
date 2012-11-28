@@ -21,7 +21,7 @@ OpErrorCode CISOPMove::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPMove::SetLine(const std::string &strLine)
+OpErrorCode CISOPMove::SetLine(const std::wstring &wstrLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;
