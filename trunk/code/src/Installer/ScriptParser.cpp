@@ -45,6 +45,9 @@ SPErrorCode CScriptParser::ParserScript(const std::wstring& wstrPath, IScriptPar
 		Utility::TrimLeft(wstr);
 		m_ScanLine.wstrLine = wstr;
 		m_ScanLine.lnLine++;
+		wchar_t sz = wstr[0];
+		wchar_t sz1 = wstr[1];
+		wchar_t sz2 = wstr[2];
 		if(wstr.length() <= 0)
 		{
 			continue;
@@ -75,8 +78,26 @@ SPErrorCode CScriptParser::ParserScript(const std::wstring& wstrPath, IScriptPar
 				// 如果没有，就解析成功
 				// 如果有的话，并且在]前，出错。
 				// 如果在]后，判断下之间除了空格还有没有其他字符。
-				// 有其他字符，脚本出错，没有就回调 OnParserSection
-				wstr[stLeft];
+				// 有其他字符，脚本出错，没有就回调 OnParserSection  
+				std::wstring::size_type stComment = wstr.find_first_of(L"//");
+				if(stComment == std::wstring::npos)
+				{
+					std::wstring wstrRight = &wstr[stLeft + 1];
+					Utility::TrimLeft(wstrRight);
+				}
+				else if(stComment < stLeft)
+				{
+					errorCode = SP_ERROR_SECTION_TOKEN_MISSING;
+					if(pIEvent)
+						pIEvent->OnParserError(errorCode, wstrPath);
+					return errorCode;
+				}
+				else
+				{
+					std::wstring wstrName = wstr.substr(1, stLeft - 1);
+					if(pIEvent)
+						pIEvent->OnParserSection(wstr, wstrPath);
+				}
 			}
 		}
 		else if(pIEvent)

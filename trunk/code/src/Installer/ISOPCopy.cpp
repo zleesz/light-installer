@@ -25,7 +25,7 @@ OpErrorCode CISOPCopy::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPCopy::SetLine(const std::string &strLine)
+OpErrorCode CISOPCopy::SetLine(const std::wstring &wstrLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;

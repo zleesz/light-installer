@@ -21,7 +21,7 @@ OpErrorCode CISOPShellExcute::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPShellExcute::SetLine(const std::string &strLine)
+OpErrorCode CISOPShellExcute::SetLine(const std::wstring &wstrLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;

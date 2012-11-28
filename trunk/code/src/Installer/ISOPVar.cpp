@@ -21,7 +21,7 @@ OpErrorCode CISOPVar::operator()() const
 	return errorCode;
 }
 
-OpErrorCode CISOPVar::SetLine(const std::string &strLine)
+OpErrorCode CISOPVar::SetLine(const std::wstring &wstrLine)
 {
 	OpErrorCode errorCode = OP_ERROR_NO_ERROR;
 	return errorCode;
