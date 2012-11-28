@@ -18,11 +18,9 @@ typedef enum _enumISOPType
 class CISOPBase
 {
 public:
-	std::wstring m_wstrLine;
-public:
 	virtual const std::wstring toString() const = 0;
 	virtual OpErrorCode operator()() const = 0;
 	virtual LONG GetValue() const = 0;
 	virtual ISOPType GetType() const = 0;
-	virtual OpErrorCode SetLine(const std::string &strLine) = 0;
+	virtual OpErrorCode SetLine(const std::wstring &wstrLine) = 0;
 };

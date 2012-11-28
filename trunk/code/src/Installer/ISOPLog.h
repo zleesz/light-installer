@@ -145,7 +145,7 @@ public:
 		~CISOPLogEnter()
 		{
 			TCHAR szFunction[MAX_LEAVE_FUNNAME_LENGTH];
-			_sntprintf_s(szFunction , MAX_LEAVE_FUNNAME_LENGTH - 1, _T("%s%s"), LEAVE_FUNCTION_FLAG, &m_pszFunction[OFFSET_LEAVE_FUNCTION_FLAG]);
+			_sntprintf(szFunction ,MAX_LEAVE_FUNNAME_LENGTH - 1, _T("%s%s"), LEAVE_FUNCTION_FLAG, &m_pszFunction[OFFSET_LEAVE_FUNCTION_FLAG]);
 			CISOPLog::GetInstance(szFunction , m_pvThis)->OutputLog(LEVEL_TRACE, m_pszFuncSig, NULL);
 		}
 	private:
@@ -202,24 +202,24 @@ void CISOPLog::OutputLog(LogLevel level, LPCTSTR pszFormat, va_list ap)
 	if((DWORD)0 == nCurProcessId)
 		nCurProcessId = (DWORD)GetCurrentProcessId();
 	GetLocalTime(&nowtime);
-	nDebugViewMsgoffset = _sntprintf_s(pWholeMsg, MAX_USERDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("%08d\t%02d:%02d:%02d.%03d\t[%d] "),
+	nDebugViewMsgoffset = _sntprintf(pWholeMsg, MAX_USERDATA_SIZE, _T("%08d\t%02d:%02d:%02d.%03d\t[%d] "),
 		m_nFileLogLineCnt++,nowtime.wHour, nowtime.wMinute, nowtime.wSecond, nowtime.wMilliseconds, nCurProcessId );
 	pDebugViewMsg = pWholeMsg + nDebugViewMsgoffset; //向OutputDebugString传递的字符串的首地址
 	//2.加入 [TID] 
-	nLevelMsgoffset = _sntprintf_s(pDebugViewMsg, MAX_USERDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("[%d] "), GetCurrentThreadId());
+	nLevelMsgoffset = _sntprintf(pDebugViewMsg, MAX_USERDATA_SIZE, _T("[%d] "), GetCurrentThreadId());
 	pLevelMsg = pDebugViewMsg + nLevelMsgoffset; //级别字符串的首地址
 	//nUserMsgoffset =  _tcslen(_T("TRACE  ")) + _tcslen(GetCurrentrentModuleName()) + _tcslen(_T("<> "));
 	//3. 加入日志级别和模块名
 	//nLen = nUserMsgoffset;
 	switch(level)
 	{
-	case LEVEL_TRACE:	nUserMsgoffset = _sntprintf_s(pLevelMsg, MAX_PRIVATEDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("TRACE  <%s> "), GetCurrentModuleName());	break;
-	case LEVEL_DEBUG:	nUserMsgoffset = _sntprintf_s(pLevelMsg, MAX_PRIVATEDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("DEBUG  <%s> "), GetCurrentModuleName());	break;
-	case LEVEL_INFO:	nUserMsgoffset = _sntprintf_s(pLevelMsg, MAX_PRIVATEDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("INFO   <%s> "), GetCurrentModuleName());	break;
-	case LEVEL_WARN:	nUserMsgoffset = _sntprintf_s(pLevelMsg, MAX_PRIVATEDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("WARN   <%s> "), GetCurrentModuleName());	break;
-	case LEVEL_ERROR:	nUserMsgoffset = _sntprintf_s(pLevelMsg, MAX_PRIVATEDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("ERROR  <%s> "), GetCurrentModuleName());	break;
-	case LEVEL_FATAL:	nUserMsgoffset = _sntprintf_s(pLevelMsg, MAX_PRIVATEDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("FATAL  <%s> "), GetCurrentModuleName());	break;
-	case LEVEL_PROMPT:	nUserMsgoffset = _sntprintf_s(pLevelMsg, MAX_PRIVATEDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("PROMPT <%s> "), GetCurrentModuleName());	break;
+	case LEVEL_TRACE:	nUserMsgoffset = _sntprintf(pLevelMsg, MAX_PRIVATEDATA_SIZE, _T("TRACE  <%s> "), GetCurrentModuleName());	break;
+	case LEVEL_DEBUG:	nUserMsgoffset = _sntprintf(pLevelMsg, MAX_PRIVATEDATA_SIZE, _T("DEBUG  <%s> "), GetCurrentModuleName());	break;
+	case LEVEL_INFO:	nUserMsgoffset = _sntprintf(pLevelMsg, MAX_PRIVATEDATA_SIZE, _T("INFO   <%s> "), GetCurrentModuleName());	break;
+	case LEVEL_WARN:	nUserMsgoffset = _sntprintf(pLevelMsg, MAX_PRIVATEDATA_SIZE, _T("WARN   <%s> "), GetCurrentModuleName());	break;
+	case LEVEL_ERROR:	nUserMsgoffset = _sntprintf(pLevelMsg, MAX_PRIVATEDATA_SIZE, _T("ERROR  <%s> "), GetCurrentModuleName());	break;
+	case LEVEL_FATAL:	nUserMsgoffset = _sntprintf(pLevelMsg, MAX_PRIVATEDATA_SIZE, _T("FATAL  <%s> "), GetCurrentModuleName());	break;
+	case LEVEL_PROMPT:	nUserMsgoffset = _sntprintf(pLevelMsg, MAX_PRIVATEDATA_SIZE, _T("PROMPT <%s> "), GetCurrentModuleName());	break;
 	default:
 		return;
 	}
@@ -263,7 +263,7 @@ void CISOPLog::OutputLog(LogLevel level, LPCTSTR pszFormat, va_list ap)
 			s_dwThis =(DWORD)-1;
 		}
 		pUserMsg[0] = _T('[');
-		_sntprintf_s(&pUserMsg[1],MAX_PRIVATEDATA_SIZE, MAX_PRIVATEDATA_SIZE, _T("0x%08x"), s_dwThis);
+		_sntprintf(&pUserMsg[1],MAX_PRIVATEDATA_SIZE, _T("0x%08x"), s_dwThis);
 		s_nThisLen = (INT)_tcslen(pUserMsg);
 		pUserMsg[s_nThisLen] = _T(']');
 		pUserMsg[s_nThisLen + 1] = _T(' ');
@@ -274,13 +274,13 @@ void CISOPLog::OutputLog(LogLevel level, LPCTSTR pszFormat, va_list ap)
 	__try
 	{
 		if(NULL == ap)
-			nUserMsgoffset = _sntprintf_s(pUserMsg, sizeof(pUserMsg)/ sizeof(pUserMsg[0]), MAX_USERDATA_SIZE - (pUserMsg-pWholeMsg) - 64, _T("%s"), pszFormat);
+			nUserMsgoffset = _sntprintf(pUserMsg, MAX_USERDATA_SIZE - (pUserMsg-pWholeMsg) - 64, _T("%s"), pszFormat);
 		else
-			nUserMsgoffset = _sntprintf_s(pUserMsg, sizeof(pUserMsg)/ sizeof(pUserMsg[0]), MAX_USERDATA_SIZE - (pUserMsg-pWholeMsg) - 64, pszFormat, ap);
+			nUserMsgoffset = _sntprintf(pUserMsg, MAX_USERDATA_SIZE - (pUserMsg-pWholeMsg) - 64, pszFormat, ap);
 	}
 	__except(EXCEPTION_EXECUTE_HANDLER)
 	{
-		nUserMsgoffset = _sntprintf_s(pUserMsg, sizeof(pUserMsg)/ sizeof(pUserMsg[0]), MAX_USERDATA_SIZE - (pUserMsg-pWholeMsg) - 64, _T("(!!!)Access Error, Invalid Memory Address : 0x%p, ExceptionCode : 0x%08x"), pszFormat, GetExceptionCode());
+		nUserMsgoffset = _sntprintf(pUserMsg, MAX_USERDATA_SIZE - (pUserMsg-pWholeMsg) - 64, _T("(!!!)Access Error, Invalid Memory Address : 0x%p, ExceptionCode : 0x%08x"), pszFormat, GetExceptionCode());
 	}
 	if((size_t)-1 == nUserMsgoffset)
 		nUserMsgoffset = _tcslen(pUserMsg);
@@ -290,7 +290,7 @@ void CISOPLog::OutputLog(LogLevel level, LPCTSTR pszFormat, va_list ap)
 	//_tcsncat(++pEnd, FINALFLAG , nFinalFlagLen); //在后面加\t\r\n
 	LARGE_INTEGER li = {0};
 	li.QuadPart = GetTickCount64();
-	nUserMsgoffset = _sntprintf_s(++pEnd, sizeof(pEnd)/ sizeof(pEnd[0]), 32, _T("\t'%hu '%hu%s"), HIWORD(li.LowPart), LOWORD(li.LowPart), FINALFLAG); 
+	nUserMsgoffset = _sntprintf(++pEnd, 32, _T("\t'%hu '%hu%s"), HIWORD(li.LowPart), LOWORD(li.LowPart), FINALFLAG); 
 	pEnd += nUserMsgoffset;
 	//_tcsncat(++pEnd, FINALFLAG , nFinalFlagLen); //在后面加\t\r\n
 	OutputDebugString(pDebugViewMsg);
@@ -333,7 +333,7 @@ void CISOPLog::WriteToLogFile(LogLevel level, LPCTSTR pszFileLogMsg, DWORD dwLen
 #else
 		pszLogFilePath = m_szLogFileDirA;
 #endif
-		_sntprintf_s(szLogFilePathName, sizeof(szLogFilePathName)/ sizeof(szLogFilePathName[0]), _MAX_PATH, _T("%s%s[%d].log"), pszLogFilePath, pszCurModuleName, dwPID); //no reach
+		_sntprintf(szLogFilePathName, _MAX_PATH, _T("%s%s[%d].log"), pszLogFilePath, pszCurModuleName, dwPID); //no reach
 		//打开日志文件
 		s_hLogFile =  CreateFile(szLogFilePathName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, CREATE_ALWAYS, 0 , NULL);
 		if(INVALID_HANDLE_VALUE == s_hLogFile)
@@ -366,7 +366,7 @@ void CISOPLog::WriteToLogFile(LogLevel level, LPCTSTR pszFileLogMsg, DWORD dwLen
 #else
 				pszLogFilePath = m_szLogFileDirA;
 #endif
-				_sntprintf_s(szLogFilePathName, _MAX_PATH, _T("%s\\%s[%d].log"), pszLogFilePath, pszCurModuleName, dwPID); //no reach
+				_sntprintf(szLogFilePathName, _MAX_PATH, _T("%s\\%s[%d].log"), pszLogFilePath, pszCurModuleName, dwPID); //no reach
 				s_hLogFile =  CreateFile(szLogFilePathName, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, CREATE_ALWAYS, 0 , NULL);
 				if(INVALID_HANDLE_VALUE == s_hLogFile)
 					return;				
@@ -442,7 +442,7 @@ void CISOPLog::WriteToLogFile(LogLevel level, LPCTSTR pszFileLogMsg, DWORD dwLen
 #else
 		pszLogFilePath = m_szLogFileDirA;
 #endif
-		_sntprintf_s(szLogFilePathName, _MAX_PATH, _T("%s\\%s[%d].log"), pszLogFilePath, pszCurModuleName, dwPID); //no reach
+		_sntprintf(szLogFilePathName, _MAX_PATH, _T("%s\\%s[%d].log"), pszLogFilePath, pszCurModuleName, dwPID); //no reach
 		//打开日志文件
 		s_hLogFile =  CreateFile(szLogFilePathName, GENERIC_WRITE, FILE_SHARE_WRITE|FILE_SHARE_READ, NULL,CREATE_ALWAYS, 0,NULL);
 		if(s_hLogFile)
@@ -464,7 +464,7 @@ void CISOPLog::PrintModuleInit()
 {
 	//
 	TCHAR szData[MAX_USERDATA_SIZE + 1] = {0};
-	_sntprintf_s(szData, MAX_USERDATA_SIZE, _T("Module Loaded. Entry Address(0x%08x), Path = %s"),
+	_sntprintf(szData, MAX_USERDATA_SIZE, _T("Module Loaded. Entry Address(0x%08x), Path = %s"),
 		(ULONG)(ULONG_PTR)GetCurrentModuleHandle(), s_szModuleFileName);
 	TSPrompt(szData);
 	LPCTSTR pszVertionType = NULL;
@@ -510,7 +510,7 @@ LPCTSTR CISOPLog::GetCurrentModuleVersion()
 	{
 		if(VerQueryValue(pszInfoBuf, _T("\\"),(LPVOID*)&pvi,&cbTranslate))
 		{
-			_sntprintf_s(szVerInfo,CB_FILE_VERSION, _T("FileVersion : %d.%d.%d.%d [ FileVersionMS : 0x%08x, FileVersionLS : 0x%08x, ProductVersionMS : 0x%08x, ProductVersionLS : 0x%08x, ") 
+			_sntprintf(szVerInfo,CB_FILE_VERSION, _T("FileVersion : %d.%d.%d.%d [ FileVersionMS : 0x%08x, FileVersionLS : 0x%08x, ProductVersionMS : 0x%08x, ProductVersionLS : 0x%08x, ") 
 				_T("Signature : 0x%08x, FileFlags : 0x%08x, FileFlagsMask : 0x%08x, FileOS : 0x%08x, ")
 				_T("FileType : 0x%08x, FileSubType : 0x%08x, FileDateMS : 0x%08x, FileDateLS : 0x%08x ]") ,
 				HIWORD(pvi->dwFileVersionMS), LOWORD(pvi->dwFileVersionMS), HIWORD(pvi->dwFileVersionLS), LOWORD(pvi->dwFileVersionLS),

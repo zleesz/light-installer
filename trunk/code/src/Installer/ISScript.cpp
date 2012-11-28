@@ -3,7 +3,7 @@
 
 CISScript::CISScript(void)
 {
-	m_Parser = CScriptParser::GetInstance();
+	m_Parser = GET_SINGLETON(CScriptParser);
 }
 
 CISScript::~CISScript(void)
@@ -38,12 +38,12 @@ void CISScript::OnParserSucc(const std::wstring& wstrPath)
 
 }
 
-void CISScript::OnParserSection(const std::string& strSection, const std::wstring& wstrPath)
+void CISScript::OnParserSection(const std::wstring& wstrSection, const std::wstring& wstrPath)
 {
 
 }
 
-void CISScript::OnParserOpLine(const std::string& strOpLine, const std::wstring& wstrPath)
+void CISScript::OnParserOpLine(const std::wstring& wstrOpLine, const std::wstring& wstrPath)
 {
 
 }

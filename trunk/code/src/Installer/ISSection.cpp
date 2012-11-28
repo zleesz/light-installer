@@ -3,7 +3,7 @@
 
 CISSection::CISSection(void)
 {
-	m_pClassFactory = CISOPClassFactory::GetInstance();
+	m_pClassFactory = GET_SINGLETON(CISOPClassFactory);
 }
 
 CISSection::~CISSection(void)
@@ -35,7 +35,7 @@ const std::wstring& CISSection::GetName() const
 	return m_wstrName;
 }
 
-void CISSection::AddOperation(const std::string& strLine)
+void CISSection::AddOperation(const std::wstring& wstrLine)
 {
 	LOGENTER();
 	if(m_wstrName.empty())
@@ -46,7 +46,7 @@ void CISSection::AddOperation(const std::string& strLine)
 	CISOPBase* pISOPBase = m_pClassFactory->CreateISOP(m_wstrName);
 	if(NULL != pISOPBase)
 	{
-		OpErrorCode errorCode = pISOPBase->SetLine(strLine);
+		OpErrorCode errorCode = pISOPBase->SetLine(wstrLine);
 		LOGDEBUG(_T("errorCode=%08X"), errorCode);
 		m_vecOP.push_back(pISOPBase);
 	}

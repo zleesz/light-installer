@@ -13,6 +13,8 @@
 	classname(){}; \
 	SINGLETON_CLASS(classname)
 
+#define GET_SINGLETON(classname) \
+	classname::GetInstance()
 // error code
 // script parser
 typedef enum enumSPErrorCode
@@ -21,6 +23,7 @@ typedef enum enumSPErrorCode
 	SP_ERROR_BASE = 10000,
 	SP_ERROR_FILE_NOT_FOUND,
 	SP_ERROR_FILE_OPEN_FAILED,
+	SP_ERROR_SECTION_TOKEN_MISSING,
 }SPErrorCode;
 
 // script operation

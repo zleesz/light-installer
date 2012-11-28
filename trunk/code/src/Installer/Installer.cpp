@@ -141,7 +141,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
-		CISScriptManager::GetInstance()->LoadScript(_T("..\\..\\..\\code\\scripts\\Demo.ss"));
+		GET_SINGLETON(CISScriptManager)->LoadScript(_T("..\\..\\..\\code\\scripts\\Demo.ss"));
 		break;
 	case WM_COMMAND:
 		wmId    = LOWORD(wParam);
