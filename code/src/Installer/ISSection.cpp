@@ -38,7 +38,7 @@ const std::wstring& CISSection::GetName() const
 void CISSection::AddOperation(const std::wstring& wstrLine)
 {
 	LOGENTER();
-	if(m_wstrName.empty())
+	if(m_wstrName.length() <= 0)
 	{
 		assert(false && "AddOperation 之前要先调 SetName！");
 		return;

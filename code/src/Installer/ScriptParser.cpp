@@ -45,9 +45,6 @@ SPErrorCode CScriptParser::ParserScript(const std::wstring& wstrPath, IScriptPar
 		Utility::TrimLeft(wstr);
 		m_ScanLine.wstrLine = wstr;
 		m_ScanLine.lnLine++;
-		wchar_t sz = wstr[0];
-		wchar_t sz1 = wstr[1];
-		wchar_t sz2 = wstr[2];
 		if(wstr.length() <= 0)
 		{
 			continue;
