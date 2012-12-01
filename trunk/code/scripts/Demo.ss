@@ -3,8 +3,7 @@
 // 全局环境变量 %InstDir%、%
 // 变量使用 
 
-[include]
-// 包含文件
+[include]	// 包含文件
 DemoDefines.ss
 
 [var]

@@ -15,10 +15,21 @@ typedef enum _enumISOPType
 	ISOP_Type_Var,
 }ISOPType;
 
-class CISOPBase
+class IOPStatusChangeEvent
 {
 public:
+	virtual void OnStatusChange(const std::wstring& wstrStatus) = 0;
+};
+
+class CISOPBase
+{
+private:
+	IOPStatusChangeEvent* m_pIEvent;
+public:
+	CISOPBase() : m_pIEvent(NULL) {}
+public:
 	virtual const std::wstring toString() const = 0;
+	void Bind(IOPStatusChangeEvent* pIEvent);
 	virtual OpErrorCode operator()() const = 0;
 	virtual LONG GetValue() const = 0;
 	virtual ISOPType GetType() const = 0;

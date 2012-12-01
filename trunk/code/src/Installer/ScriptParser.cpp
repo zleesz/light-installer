@@ -26,7 +26,7 @@ SPErrorCode CScriptParser::ParserScript(const std::wstring& wstrPath, IScriptPar
 		return errorCode;
 	}
 	// 读文件，解析脚本
-	// 一定是 unicode 无BOM编码
+	// 一定是 UTF-8 编码
 	std::ifstream f;
 	f.open(wstrPath.c_str(), std::ios::_Nocreate || std::ios::binary);
 	if(f.fail())
@@ -40,6 +40,16 @@ SPErrorCode CScriptParser::ParserScript(const std::wstring& wstrPath, IScriptPar
 	std::string s;
 	while(getline(f, s))
 	{
+		if(0 == m_ScanLine.lnLine && s.length() >= 3)
+		{
+			// 判断UTF-8是有BOM还是无BOM
+			// 前两个字节0xEF、0xBB、0xBF
+			if(s[0] == (char)0xEF && s[1] == (char)0xBB && s[2] == (char)0xBF)
+			{
+				// 有BOM文件头，去掉
+				s = &s[3];
+			}
+		}
 		std::wstring wstr;
 		Utility::MBCSToUnicode(s.c_str(), wstr);
 		Utility::TrimLeft(wstr);
@@ -93,7 +103,7 @@ SPErrorCode CScriptParser::ParserScript(const std::wstring& wstrPath, IScriptPar
 				{
 					std::wstring wstrName = wstr.substr(1, stLeft - 1);
 					if(pIEvent)
-						pIEvent->OnParserSection(wstr, wstrPath);
+						pIEvent->OnParserSection(wstrName, wstrPath);
 				}
 			}
 		}
